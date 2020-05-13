@@ -1,3 +1,4 @@
+--- BACK-END ---
 npm i express
 npm i cors
 npm i body-parse
@@ -9,3 +10,15 @@ tsc --init
     ], 
 2.- "outDir": "dist/",   
 *************************************************************************************************************
+--- GIT HUB ---
+git tag -a v1.0.0 -m "Seccion del titulo"
+
+--- ANGULAR ---
+1. npm i ngx-socket-io (INSTALACION DE ngx-socket-io)
+2. Configuracion del appModule
+
+	import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+	const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
+
+3. Creacion de la clase como indica la documentacion
+

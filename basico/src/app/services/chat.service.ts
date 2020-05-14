@@ -10,7 +10,7 @@ export class ChatService {
 
   sendMessage(mensaje:string){
     const payload = {
-      de:'Jhonny',
+      de:this.wsService.getUsuario().nombre,
       cuerpo:mensaje
     };
 
@@ -20,4 +20,9 @@ export class ChatService {
   getMessages(){
     return this.wsService.listen('mensaje-nuevo');
   }
+
+  getMessagesPrivate(){
+    return this.wsService.listen('mensaje-privado');
+  }
+
 }

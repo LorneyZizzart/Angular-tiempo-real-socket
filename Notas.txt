@@ -13,6 +13,12 @@ tsc --init
 --- GIT HUB ---
 git tag -a v1.0.0 -m "Seccion del titulo"
 
+git status
+git add .
+git commit -m "Fin de la seccion 5"
+git push
+git tag
+git tag -a v1.0.0 -m "Seccion5 terminada"
 --- ANGULAR ---
 1. npm i ngx-socket-io (INSTALACION DE ngx-socket-io)
 2. Configuracion del appModule

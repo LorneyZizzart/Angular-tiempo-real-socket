@@ -30,13 +30,13 @@ class Server {
         console.log('Escuchando conexiones - scokets');
         this.io.on('connection', cliente => {
             //Connectar cliente
-            socket.conectarCliente(cliente);
+            socket.conectarCliente(cliente, this.io);
             //Configurar cliente
             socket.configurarUsuario(cliente, this.io);
             //Mensajes
             socket.mensaje(cliente, this.io);
             //Desconectar
-            socket.desconectar(cliente);
+            socket.desconectar(cliente, this.io);
         });
     }
     start(callback) {

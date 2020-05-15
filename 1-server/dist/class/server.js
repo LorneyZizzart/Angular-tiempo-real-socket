@@ -33,6 +33,8 @@ class Server {
             socket.conectarCliente(cliente, this.io);
             //Configurar cliente
             socket.configurarUsuario(cliente, this.io);
+            //obtner usuarios activos
+            socket.obtenerUsuarios(cliente, this.io);
             //Mensajes
             socket.mensaje(cliente, this.io);
             //Desconectar

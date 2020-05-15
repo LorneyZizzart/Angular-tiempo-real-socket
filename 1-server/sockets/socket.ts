@@ -37,3 +37,10 @@ export const configurarUsuario = (cliente:Socket, io:socketIO.Server) =>{
         });
     })
 }
+
+export const obtenerUsuarios = (cliente:Socket, io:socketIO.Server) =>{
+    cliente.on('obtener-usuarios', ()=>{
+        
+        io.emit('usuarios-activos', usuariosConectados.getLista());
+    })
+}

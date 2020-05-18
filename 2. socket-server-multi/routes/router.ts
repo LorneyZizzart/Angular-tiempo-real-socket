@@ -2,12 +2,18 @@ import { Router, Request, Response} from 'express'
 import Server from '../class/server';
 import { usuariosConectados } from '../sockets/socket';
 import { GraficaData } from '../class/grafica';
+import Connect from '../class/connectDB';
 
 const router = Router();
 const grafica = new GraficaData();
+const connection = new Connect()
 
 router.get('/grafica', (req:Request, res:Response) => {
     res.json(grafica.getDataGrafica());
+
+    //Prueba de connecion a la DB sql Server
+    connection.connection();
+
 })
 
 router.post('/grafica', (req:Request, res:Response) => {

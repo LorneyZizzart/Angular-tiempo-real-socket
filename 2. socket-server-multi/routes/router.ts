@@ -1,32 +1,24 @@
 import { Router, Request, Response} from 'express'
 import Server from '../class/server';
 import { usuariosConectados } from '../sockets/socket';
+import { GraficaData } from '../class/grafica';
 
 const router = Router();
+const grafica = new GraficaData();
 
-router.get('/mensajes', (req:Request, res:Response) => {
-    res.json({
-        ok:true,
-        mensajes:'Todo esta bien !!'
-    });
+router.get('/grafica', (req:Request, res:Response) => {
+    res.json(grafica.getDataGrafica());
 })
 
-router.post('/mensajes', (req:Request, res:Response) => {
+router.post('/grafica', (req:Request, res:Response) => {
 
-    const cuerpo = req.body.cuerpo;
-    const de = req.body.de;
+    const mes = req.body.mes;
+    const unidades = Number(req.body.unidades);
 
-    const payload = { de, cuerpo };
+    grafica.incrementarValor(mes, unidades);
 
-    const server = Server.instance;
+    res.json(grafica.getDataGrafica());
 
-    server.io.emit('mensaje-nuevo', payload);
-
-    res.json({
-        ok:true,
-        cuerpo : cuerpo,
-        de: de
-    });
 })
 
 router.post('/mensajes/:id', (req:Request, res:Response) => {

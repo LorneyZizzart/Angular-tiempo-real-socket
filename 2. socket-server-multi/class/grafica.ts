@@ -1,6 +1,6 @@
 export class GraficaData {
     private meses: string[] = ['Enero', 'Febrero', 'Marzo', 'Abril'];
-    private valores:number[] = [1, 2, 3, 4];
+    private valores:number[] = [0, 0, 0, 0];
 
     constructor(){}
 
@@ -12,7 +12,7 @@ export class GraficaData {
         mes = (mes.charAt(0).toUpperCase() + mes.slice(1)).trim();  //trim para limpiar los espacios
         for(let i in this.meses){ // in al parecer solo lo toma como indices
             if(this.meses[i] === mes){
-                console.log(this.meses[i], this.valores[i]);
+                console.log('asd: ',this.meses[i], valor);
                 this.valores[i] += valor;
             }
         }

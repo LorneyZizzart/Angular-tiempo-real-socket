@@ -3,6 +3,7 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { HttpClient } from '@angular/common/http';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'app-grafica',
@@ -16,10 +17,11 @@ export class GraficaComponent implements OnInit {
   ];
   public lineChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril'];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private wsService:WebsocketService) { }
 
   ngOnInit() {
     this.getData();
+    this.escucharSocket();
     // setInterval(()=>{
     //   const newData = [
     //     //numeros redondeados
@@ -35,9 +37,14 @@ export class GraficaComponent implements OnInit {
   }
 
   getData(){
-    this.http.get('http://localhost:5000/grafica').subscribe((data:any) =>{
+    this.http.get('http://localhost:5000/grafica').subscribe((data:any) =>  this.lineChartData = data );
+  }
+
+  escucharSocket(){
+    this.wsService.listen('cambio-grafica').subscribe((data:any)=>{
+      console.log('socket: ',data);
       this.lineChartData = data;
-    });
+    })
   }
 
 }
